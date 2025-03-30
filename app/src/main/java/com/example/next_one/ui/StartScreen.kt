@@ -39,7 +39,7 @@ fun NextAppStartingScreen(navController: NavController, modifier: Modifier = Mod
         Text(
             modifier = modifier
                 .fillMaxWidth()
-                .padding(top = 120.dp),
+                .padding(top = 80.dp),
             text = stringResource(R.string.app_name),
             textAlign = TextAlign.Center,
             style = TextStyle(
@@ -53,7 +53,6 @@ fun NextAppStartingScreen(navController: NavController, modifier: Modifier = Mod
         Spacer(modifier.weight(1f))
     }
 }
-
 
 @Composable
 fun SelectionMenu(navController: NavController, modifier: Modifier = Modifier) {
