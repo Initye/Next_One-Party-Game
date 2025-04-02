@@ -5,6 +5,8 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -20,30 +22,27 @@ import com.example.next_one.R
 
 @Composable
 fun HowToPlay(modifier: Modifier = Modifier) {
-    Box(
-        modifier = modifier
-            .border(width = 2.dp, color = Color.White)
-            .background(colorResource(R.color.light_black))
-            .size(width = 300.dp, height = 200.dp)
-            .padding(start = 40.dp, top = 60.dp, end = 40.dp, bottom = 60.dp),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            modifier = modifier,
-            text = "How to play preview",
-            textAlign = TextAlign.Center,
-            maxLines = 3,
-            softWrap = true,
-            style = TextStyle(
-                color = colorResource(R.color.white),
-                fontSize = 20.sp
-            )
-        )
-    }
+
 }
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun AlertDialog(
+    onDismiss: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        confirmButton = { /*TODO*/},
+        modifier = modifier
+            .size(200.dp)
+    )
+
+}
+
 
 @Composable
 @Preview
 fun HTPPreview() {
-    HowToPlay()
+    AlertDialog( onDismiss = {} )
 }
