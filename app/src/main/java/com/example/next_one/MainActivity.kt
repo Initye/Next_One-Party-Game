@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.core.view.WindowCompat
 import androidx.navigation.compose.rememberNavController
 import com.example.next_one.ui.NextApp
 import com.example.next_one.ui.theme.Next_OneTheme
@@ -13,6 +12,7 @@ import androidx.navigation.compose.NavHost
 import com.example.next_one.ui.NextAppStartingScreen
 import com.example.next_one.ui.AboutScreen
 import com.example.next_one.ui.HowToPlay
+import com.example.next_one.ui.SettingsScreen
 
 
 class MainActivity : ComponentActivity() {
@@ -34,6 +34,9 @@ class MainActivity : ComponentActivity() {
                     }
                     composable("about_Screen") {
                         AboutScreen()
+                    }
+                    composable("settings_Screen") {
+                        SettingsScreen()
                     }
                 }
 //            NextApp()

@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -27,6 +28,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.next_one.R
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 
 @Composable
 fun NextAppStartingScreen(navController: NavController, modifier: Modifier = Modifier) {
@@ -56,20 +60,29 @@ fun NextAppStartingScreen(navController: NavController, modifier: Modifier = Mod
 
 @Composable
 fun SelectionMenu(navController: NavController, modifier: Modifier = Modifier) {
+
+    var showAboutDialog by remember { mutableStateOf(false) }
+
     Column(
         modifier = modifier
     ) {
-        val menuItems = listOf("Start", "How to play", "About")
+        val menuItems = listOf("Start", "How to play", "About", "Settings")
         menuItems.forEachIndexed { index, label ->
             MenuItem(label, index = index, onButtonClicked = { selectedIndex ->
                 when(selectedIndex) {
                     0 -> navController.navigate("game_Screen")
-                    1 -> navController.navigate("htp_Screen")
+                    1 -> showAboutDialog = true
                     2 -> navController.navigate("about_Screen")
+                    3 -> navController.navigate("settings_Screen")
                 }
             }
             )
             if(index < menuItems.size - 1) Spacer(modifier.height(16.dp)) //Ensures that there is space between elements but not after last one
+            if(showAboutDialog){
+                AlertDialog(
+                    onDismiss = { showAboutDialog = false }
+                )
+            }
         }
     }
 }

@@ -3,6 +3,7 @@ package com.example.next_one.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -12,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -23,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.next_one.R
 
 
@@ -54,7 +57,9 @@ fun NextApp(modifier: Modifier = Modifier) {
 
 
 @Composable
-fun TextCard(modifier: Modifier = Modifier) {
+fun TextCard(modifier: Modifier = Modifier, gameViewModel: GameViewModel = viewModel()) {
+    val gameUiState = gameViewModel.uiState.collectAsState().value
+
     Box(
         modifier = modifier
             .border(width = 2.dp, color = Color.White)
@@ -64,8 +69,11 @@ fun TextCard(modifier: Modifier = Modifier) {
         contentAlignment = Alignment.Center
     ) {
         Text(
-            modifier = modifier,
-            text = "Who's the one to sleep right now?",
+            modifier = modifier
+                .clickable { gameViewModel.pickRandomText() },
+            text = if(gameUiState.currentText.isBlank()) {
+                "Click to uncover first sentence"
+            } else { gameUiState.currentText },
             textAlign = TextAlign.Center,
             maxLines = 3,
             softWrap = true,
