@@ -66,8 +66,10 @@ fun SelectionMenu(navController: NavController, modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
     ) {
-        val menuItems = listOf("Start", "How to play", "About", "Settings")
+        val menuItems = listOf(R.string.start, R.string.how_to_play, R.string.about, R.string.settings)
+
         menuItems.forEachIndexed { index, label ->
+            val label = stringResource(id = label)
             MenuItem(label, index = index, onButtonClicked = { selectedIndex ->
                 when(selectedIndex) {
                     0 -> navController.navigate("game_Screen")

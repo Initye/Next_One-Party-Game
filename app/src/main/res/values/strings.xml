@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Next_One</string>
+    <string name="language">Language</string>
+    <string name="polski">Polish</string>
+    <string name="mature_content">Mature Content</string>
+    <string name="theme">Theme</string>
+    <string name="how_to_play">How to play</string>
+    <string name="about">About</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="start" translatable="false">Start</string>
+    <string name="settings">Settings</string>
 </resources>

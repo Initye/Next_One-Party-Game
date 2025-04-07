@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Next_One</string>
+    <string name="language">Język</string>
+    <string name="polski">Polski</string>
+    <string name="mature_content">Treści dla dorosłych</string>
+    <string name="theme">Motyw</string>
+    <string name="how_to_play">Jak grać?</string>
+    <string name="about">O grze</string>
+    <string name="yes">Tak</string>
+    <string name="no">Nie</string>
+    <string name="settings">Ustawienia</string>
+</resources>
