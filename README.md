@@ -15,8 +15,6 @@ The selected person reads the question aloud and then taps the screen to draw th
 
 Repeat the process and keep passing the phone as the questions get more fun and engaging!
 
-Simple rules, lots of fun!
-
 ## **Game Features**
 Randomized, fun questions that everyone can relate to.
 
