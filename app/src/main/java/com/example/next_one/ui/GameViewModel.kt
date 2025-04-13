@@ -1,37 +1,40 @@
 package com.example.next_one.ui
 
-import android.app.LocaleManager
 import android.content.Context
-import android.os.Build
-import android.os.LocaleList
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.ViewModel
 import com.example.next_one.data.allWordsEnglish
 import com.example.next_one.data.allWordsPolish
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
-import androidx.core.os.LocaleListCompat
-import com.example.next_one.MainActivity
-import org.intellij.lang.annotations.Language
+import com.example.next_one.LanguageUtils
+import com.example.next_one.data.matureWordsEnglish
+import com.example.next_one.data.matureWordsPolish
 
-class GameViewModel: ViewModel() {
+class GameViewModel(): ViewModel() {
     private val _uiState = MutableStateFlow(GameUiState())
     val uiState: StateFlow<GameUiState> = _uiState.asStateFlow()
-    var language by mutableStateOf("English")
-
-    fun updateLanguage(newLanguage: String) {
-        language = newLanguage
-        pickRandomText()
-    }
 
     fun pickRandomText(): String {
-        val currentText = if(language == "Polish") allWordsPolish.random() else allWordsEnglish.random()
+        val wordsCombinedPolish  = allWordsPolish + matureWordsPolish
+        val wordsCombinedEnglish  = allWordsEnglish + matureWordsEnglish
+
+        val currentText = when {
+            LanguageUtils.currentLanguage.value == "pl" && LanguageUtils.matureContentEnabled.value ->
+                wordsCombinedPolish.random()
+            LanguageUtils.currentLanguage.value == "en" && LanguageUtils.matureContentEnabled.value ->
+                wordsCombinedEnglish.random()
+            LanguageUtils.currentLanguage.value == "en" ->
+                allWordsEnglish.random()
+            else ->
+                allWordsPolish.random()
+        }
 
         _uiState.value = GameUiState(currentText = currentText)
         return currentText
     }
 }
+
+

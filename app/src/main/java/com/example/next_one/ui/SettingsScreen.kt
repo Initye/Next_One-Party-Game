@@ -38,6 +38,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -58,7 +59,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.NavHost
 import com.example.next_one.R
 import com.example.next_one.ui.NextAppStartingScreen
-import com.example.next_one.ui.AboutScreen
+
 import com.example.next_one.ui.HowToPlay
 import com.example.next_one.ui.SettingsScreen
 import kotlin.String
@@ -76,6 +77,7 @@ import java.io.StringReader
 
 @Composable
 fun SettingsScreen(modifier: Modifier = Modifier) {
+
     //Title text
     Column(
         modifier = modifier
@@ -108,6 +110,13 @@ fun LanguageSetting(
 ) {
     val context = LocalContext.current
 
+    //Stan z SharedPreferences
+    LaunchedEffect(Unit) {
+        LanguageUtils.currentLanguage.value =
+            LanguageUtils.getSavedLanguage(context) ?: "en"
+    }
+    val currentLang = LanguageUtils.currentLanguage.value
+
     Column(
         modifier = modifier
             .fillMaxWidth(),
@@ -131,7 +140,12 @@ fun LanguageSetting(
             Box(
                 modifier = modifier
                     .border(width = 2.dp, color = Color.White)
-                    .background(colorResource(R.color.light_black))
+                    .background(
+                        if (currentLang == "en")
+                            colorResource(R.color.teal_700)
+                        else
+                            colorResource(R.color.light_black)
+                    )
                     .size(width = 100.dp, height = 50.dp)
                     .clickable {
                         LanguageUtils.setLanguage(context, "en")
@@ -151,7 +165,12 @@ fun LanguageSetting(
                 Box(
                     modifier = modifier
                         .border(width = 2.dp, color = Color.White)
-                        .background(colorResource(R.color.light_black))
+                        .background(
+                            if (currentLang == "pl")
+                                colorResource(R.color.teal_700)
+                            else
+                                colorResource(R.color.light_black)
+                        )
                         .size(width = 100.dp, height = 50.dp)
                         .clickable {
                             LanguageUtils.setLanguage(context, "pl")
@@ -175,11 +194,19 @@ fun LanguageSetting(
 fun MatureContentSetting(
     modifier: Modifier = Modifier,
 ) {
-    Column(
-        modifier = modifier
-            .fillMaxWidth(),
-        horizontalAlignment = Alignment.CenterHorizontally
+    val context = LocalContext.current
 
+    //Stan z SharedPreferences
+    LaunchedEffect(Unit) {
+        LanguageUtils.matureContentEnabled.value =
+            LanguageUtils.getMatureContentEnabled(context)
+    }
+
+    val isMatureEnabled = LanguageUtils.matureContentEnabled.value
+
+    Column(
+        modifier = modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
             text = stringResource(R.string.mature_content),
@@ -189,18 +216,24 @@ fun MatureContentSetting(
                 fontWeight = FontWeight.Bold,
             )
         )
-        Spacer(modifier.padding(8.dp))
+        Spacer(modifier = Modifier.padding(8.dp))
         Row(
-            modifier = modifier
-                .wrapContentWidth(),
             horizontalArrangement = Arrangement.spacedBy(36.dp)
         ) {
+            // NO button
             Box(
-                modifier = modifier
+                modifier = Modifier
                     .border(width = 2.dp, color = Color.White)
-                    .background(colorResource(R.color.light_black))
+                    .background(
+                        if (!isMatureEnabled)
+                            colorResource(R.color.teal_700)
+                        else
+                            colorResource(R.color.light_black)
+                    )
                     .size(width = 100.dp, height = 50.dp)
-                    .clickable { },
+                    .clickable {
+                        LanguageUtils.setMatureContent(context, false)
+                    },
                 contentAlignment = Alignment.Center
             ) {
                 Text(
@@ -212,12 +245,21 @@ fun MatureContentSetting(
                     )
                 )
             }
+
+            // YES button
             Box(
-                modifier = modifier
+                modifier = Modifier
                     .border(width = 2.dp, color = Color.White)
-                    .background(colorResource(R.color.light_black))
+                    .background(
+                        if (isMatureEnabled)
+                            colorResource(R.color.teal_700)
+                        else
+                            colorResource(R.color.light_black)
+                    )
                     .size(width = 100.dp, height = 50.dp)
-                    .clickable { },
+                    .clickable {
+                        LanguageUtils.setMatureContent(context, true)
+                    },
                 contentAlignment = Alignment.Center
             ) {
                 Text(
@@ -232,6 +274,8 @@ fun MatureContentSetting(
         }
     }
 }
+
+
 
 
 

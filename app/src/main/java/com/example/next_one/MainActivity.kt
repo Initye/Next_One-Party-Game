@@ -16,20 +16,20 @@ import com.example.next_one.ui.NextApp
 import com.example.next_one.ui.theme.Next_OneTheme
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.NavHost
+import com.example.next_one.LanguageUtils.currentLanguage
 import com.example.next_one.LanguageUtils.getSavedLanguage
+import com.example.next_one.LanguageUtils.matureContentEnabled
 import com.example.next_one.LanguageUtils.setLanguage
 import com.example.next_one.ui.NextAppStartingScreen
-import com.example.next_one.ui.AboutScreen
+import com.example.next_one.ui.AboutTheGame
 import com.example.next_one.ui.HowToPlay
 import com.example.next_one.ui.SettingsScreen
-import java.util.Locale
-
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        val languageCode = getSavedLanguage(this)?: "en"
+        val languageCode = getSavedLanguage(this) ?: "en"
         setLanguage(this, languageCode)
 
         setContent {
@@ -46,7 +46,7 @@ class MainActivity : ComponentActivity() {
                         HowToPlay()
                     }
                     composable("about_Screen") {
-                        AboutScreen()
+                        AboutTheGame()
                     }
                     composable("settings_Screen") {
                         SettingsScreen()
@@ -60,6 +60,8 @@ class MainActivity : ComponentActivity() {
 //    Ensures that updated locale are passed before any UI components are created
     override fun attachBaseContext(context: Context) {
         val languageCode = getSavedLanguage(context) ?: "en"
+        currentLanguage.value = languageCode
+        matureContentEnabled.value = LanguageUtils.getMatureContentEnabled(context)
         val newContext = LanguageUtils.wrapContextWithLanguage(context, languageCode)
         super.attachBaseContext(newContext)
     }

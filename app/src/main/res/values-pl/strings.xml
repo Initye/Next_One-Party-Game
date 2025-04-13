@@ -10,4 +10,6 @@
     <string name="yes">Tak</string>
     <string name="no">Nie</string>
     <string name="settings">Ustawienia</string>
+    <string name="howToPlayText">Rozpocznij grę, klikając przycisk Start.\nNa ekranie pojawi się losowe pytanie.\nPrzekaż telefon osobie, która najbardziej pasuje do pytania.\nTa osoba odczytuje pytanie na głos, a następnie dotyka ekranu, aby wylosować kolejne.\nPowtarzaj proces, przekazując telefon kolejnym osobom.\nProste zasady, masa zabawy!</string>
+    <string name="aboutTheGameText">Next One to idealna gra imprezowa, która przełamuje lody i podnosi energię!\nZabawne i nieoczekiwane pytania angażują każdego uczestnika.\nPrzekazuj telefon, odpowiadaj na pytania i śmiej się do łez.\nNiezależnie czy jesteś z przyjaciółmi czy nieznajomymi — Next One sprawi, że każde spotkanie będzie niezapomniane.</string>
 </resources>

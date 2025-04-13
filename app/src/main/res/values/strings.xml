@@ -10,4 +10,7 @@
     <string name="no">No</string>
     <string name="start" translatable="false">Start</string>
     <string name="settings">Settings</string>
+    <string name="howToPlayText">Start the game by clicking the Start.\nA random question will appear on the screen.\nPass the phone to the person who best fits the question.\nThis person reads the question aloud and then taps the screen to draw the next one.\nRepeat the process, passing the phone to the next person.\nSimple rules, lots of fun!</string>
+    <string name="aboutTheGameText">Next One is the perfect party game that breaks the ice and boosts the energy!\nFunny and unexpected questions engage every participant.\nPass the phone, answer questions, and laugh until you cry.\nWhether  &quot;you're &quot; with friends or strangers — Next One will make every gathering unforgettable.</string>
+
 </resources>

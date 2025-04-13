@@ -61,7 +61,9 @@ fun NextAppStartingScreen(navController: NavController, modifier: Modifier = Mod
 @Composable
 fun SelectionMenu(navController: NavController, modifier: Modifier = Modifier) {
 
+    var showHTPDialog by remember { mutableStateOf(false) }
     var showAboutDialog by remember { mutableStateOf(false) }
+
 
     Column(
         modifier = modifier
@@ -73,15 +75,20 @@ fun SelectionMenu(navController: NavController, modifier: Modifier = Modifier) {
             MenuItem(label, index = index, onButtonClicked = { selectedIndex ->
                 when(selectedIndex) {
                     0 -> navController.navigate("game_Screen")
-                    1 -> showAboutDialog = true
-                    2 -> navController.navigate("about_Screen")
+                    1 -> showHTPDialog = true
+                    2 -> showAboutDialog = true
                     3 -> navController.navigate("settings_Screen")
                 }
             }
             )
             if(index < menuItems.size - 1) Spacer(modifier.height(16.dp)) //Ensures that there is space between elements but not after last one
-            if(showAboutDialog){
+            if (showHTPDialog) {
                 AlertDialog(
+                    onDismiss = { showHTPDialog = false }
+                )
+            }
+            if (showAboutDialog) {
+                AlertDialogAbout(
                     onDismiss = { showAboutDialog = false }
                 )
             }
