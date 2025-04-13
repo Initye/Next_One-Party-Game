@@ -1,4 +1,4 @@
-# **Next One - Party Game **
+# Next One - Party Game 
 Next One is the ultimate party game designed to break the ice, get everyone laughing, and create unforgettable moments. Whether you're at a party with friends or meeting new people, this game will bring joy and excitement to every gathering!
 
 ## **Game Description**
