@@ -23,3 +23,10 @@ Quick gameplay that keeps the fun flowing.
 Works great with friends, family, and even strangers at a party!
 
 Easy to learn – no complex rules, just pass the phone and have fun!
+
+## **How to Install**
+<sub> Later on i will add APK installer </sub>
+
+Download files, and install through Android Studio via USB.
+
+Launch the game and start having fun!
